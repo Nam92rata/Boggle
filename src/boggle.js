@@ -98,7 +98,6 @@ class Boggle extends Component {
     getInput = (text) => {
         let matchArr = []
         this.setState({ mAr: matchArr }, () => {
-            console.log(this.state.mAr)
         })
 
         let textArray = text.split('');
@@ -109,11 +108,9 @@ class Boggle extends Component {
             this.matchColor(matchArr, msg)
             return;
         }
-        console.log(len)
         var indArr = this.getIndex(textArray[0])
         if (indArr.length) {
             for (let x = 0; x < indArr.length; x++) {
-                console.log("Searching for ", indArr[x])
                 matchArr.length = 0;
                 var surAr = this.findSurroundingElements(indArr[x])
                 matchArr.push(indArr[x])
@@ -190,25 +187,17 @@ class Boggle extends Component {
         return tempArray;
     }
 
-    handleClick = (evt) => {
-        console.log(evt.target.parentElement.rowIndex, evt.target.cellIndex)
-    }
     matchColor = (matchArr, message) => {
         this.setState({ msg: message, mAr: matchArr }, () => {
-            console.log("fffff", this.state.mAr)
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 4; j++) {
                     document.getElementById("myTable").rows[i].cells[j].classList.remove('vis')
                 }
             }
             this.state.mAr.map(el => {
-                console.log(el)
                 if (document.getElementById("myTable").rows[el[0]].cells[el[1]]) {
                     document.getElementById("myTable").rows[el[0]].cells[el[1]].className = " td vis"
                 }
-                // else {
-                //     document.getElementById("myTable").rows[el[0]].cells[el[1]].className = " td vis"
-                // }
 
             })
 
@@ -237,7 +226,7 @@ class Boggle extends Component {
                                 {this.state.boggle.map((el, index) => {
                                     return <tr key={index}>
                                         {el.map((ele, ind) => {
-                                            return <td onClick={this.handleClick} className='td' key={ind}>{ele}</td>
+                                            return <td className='td' key={ind}>{ele}</td>
                                         })}
                                     </tr>
                                 })}

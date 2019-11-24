@@ -1,5 +1,7 @@
+
 .App {
   text-align: center;
+  
 }
 .box{
   justify-content: center;
@@ -31,10 +33,16 @@
   border-radius: 20px;
   padding-inline-start: 10px;
 }
+input:focus{
+  outline: none;
+}
 .button{
   background-color: cadetblue;
   border-radius: 20px;
   height: 30px;
+}
+.button:focus{
+  outline: none;
 }
 .message{
   color: forestgreen;
