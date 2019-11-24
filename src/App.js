@@ -1,6 +1,7 @@
 import React from 'react';
 import './App.css';
-import Boggle from "./boggle"
+import Boggle from "./boggle";
+import Confetti from 'react-confetti'
 
 function App() {
   return (

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Input from './input';
 
+import Confetti from 'react-confetti'
+
 class Boggle extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,8 @@ class Boggle extends Component {
             msg: "",
             visited: false,
             mAr: [],
-            word: ""
+            word: "",
+            win: false
         };
 
     };
@@ -105,6 +108,7 @@ class Boggle extends Component {
         if (len <= 2) {
             let matchArr = []
             let msg = "Word is too short  "
+            this.setState({ win: false })
             this.matchColor(matchArr, msg)
             return;
         }
@@ -145,6 +149,7 @@ class Boggle extends Component {
                     else {
                         let matchArr = []
                         let msg = "Try again "
+                        this.setState({ win: false })
                         this.matchColor(matchArr, msg)
                         break;
                     }
@@ -152,6 +157,8 @@ class Boggle extends Component {
 
                 if (patternMatch) {
                     let msg = "Match found "
+                    this.setState({ win: true });
+                    setTimeout(() => this.setState({ win: false }), 3000);
                     if (textArray.length === matchArr.length) {
                         this.matchColor(matchArr, msg)
                     }
@@ -166,6 +173,7 @@ class Boggle extends Component {
         else {
             let matchArr = []
             let msg = "Try again "
+            this.setState({ win: false })
             this.matchColor(matchArr, msg)
         }
 
@@ -207,6 +215,7 @@ class Boggle extends Component {
     render() {
         return (
             <div>
+                {this.state.win && <Confetti />}
                 <div >
                     <div>
                         <h1>Boggle Solver</h1>
